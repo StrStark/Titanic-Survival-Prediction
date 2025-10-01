@@ -1,22 +1,22 @@
 # 🚢 Titanic Survival Prediction (Binary Classification)
 
-This project is a **machine learning pipeline** to predict passenger survival on the Titanic using Python, Pandas, Scikit-learn, and visualization libraries.  
+This project is a **machine learning pipeline** to predict passenger survival on the Titanic using Python, Pandas, Scikit-learn, and visualization libraries.
 It is based on the classic [Kaggle Titanic competition](https://www.kaggle.com/c/titanic/).
 
 ---
 
 ## 📌 Project Overview
 
-The Titanic dataset is one of the most famous datasets for learning supervised machine learning.  
+The Titanic dataset is one of the most famous datasets for learning supervised machine learning.
 The task is to predict whether a passenger survived or not (`Survived` = 0 or 1) based on features such as age, gender, class, and ticket information.
 
 This project includes:
 
-- **Exploratory Data Analysis (EDA)**
-- **Data Preprocessing** (missing values, encoding, scaling)
-- **Model Training** (Logistic Regression & Random Forest)
-- **Evaluation** (Accuracy, ROC AUC, Confusion Matrix, ROC Curves)
-- **Prediction on Test Data** and CSV submission file creation (`submission.csv`)
+* **Exploratory Data Analysis (EDA)**
+* **Data Preprocessing** (missing values, encoding, scaling)
+* **Model Training** (Logistic Regression & Random Forest)
+* **Evaluation** (Accuracy, ROC AUC, Confusion Matrix, ROC Curves)
+* **Prediction on Test Data** and CSV submission file creation (`submission.csv`)
 
 ---
 
@@ -24,11 +24,11 @@ This project includes:
 
 The dataset comes from the Kaggle Titanic competition:
 
-- [`train.csv`](https://www.kaggle.com/c/titanic/data) → contains passenger features + survival labels.
-- [`test.csv`](https://www.kaggle.com/c/titanic/data) → contains passenger features only (labels are hidden).
-- The goal is to predict survival for `test.csv`.
+* [`train.csv`](https://www.kaggle.com/c/titanic/data) → contains passenger features + survival labels.
+* [`test.csv`](https://www.kaggle.com/c/titanic/data) → contains passenger features only (labels are hidden).
+* The goal is to predict survival for `test.csv`.
 
-If you don’t want to use Kaggle, you can also use this GitHub mirror:  
+If you don’t want to use Kaggle, you can also use this GitHub mirror:
 🔗 [Titanic Dataset (GitHub)](https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv)
 
 ---
@@ -36,116 +36,122 @@ If you don’t want to use Kaggle, you can also use this GitHub mirror:
 ## ⚙️ Installation & Setup
 
 1. Clone this repository:
+
    ```bash
    git clone https://github.com/your-username/titanic-survival-prediction.git
    cd titanic-survival-prediction
-Create a virtual environment and install dependencies:
+   ```
 
-bash
-Copy code
-python -m venv venv
-source venv/bin/activate   # macOS/Linux
-venv\Scripts\activate      # Windows
+2. Create a virtual environment and install dependencies:
 
-pip install -r requirements.txt
-Launch Jupyter Notebook:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate   # macOS/Linux
+   venv\Scripts\activate      # Windows
 
-bash
-Copy code
-jupyter lab
-Open the Titanic Survival Prediction.ipynb notebook.
+   pip install -r requirements.txt
+   ```
 
-📚 Requirements
+3. Launch Jupyter Notebook:
+
+   ```bash
+   jupyter lab
+   ```
+
+   Open the `Titanic Survival Prediction.ipynb` notebook.
+
+---
+
+## 📚 Requirements
+
 Main dependencies:
 
-pandas
+* `pandas`
+* `numpy`
+* `matplotlib`
+* `seaborn`
+* `scikit-learn`
+* `jupyterlab`
 
-numpy
+(see [requirements.txt](requirements.txt) for exact versions)
 
-matplotlib
+---
 
-seaborn
+## 🔍 Project Workflow
 
-scikit-learn
+### 1. Data Exploration
 
-jupyterlab
+* Passenger distribution by survival, gender, class, and age.
 
-(see requirements.txt for exact versions)
+### 2. Preprocessing
 
-🔍 Project Workflow
-1. Data Exploration
-Passenger distribution by survival, gender, class, and age.
+* Drop irrelevant features: `PassengerId`, `Name`, `Ticket`, `Cabin`
+* Handle missing values:
 
-2. Preprocessing
-Drop irrelevant features: PassengerId, Name, Ticket, Cabin
+  * Age → median imputation
+  * Embarked → mode imputation
+  * Fare (test set) → median imputation
+* Encode categorical variables (`Sex`, `Embarked`) using `LabelEncoder`
+* Scale numerical features for Logistic Regression
 
-Handle missing values:
+### 3. Model Training
 
-Age → median imputation
+* **Logistic Regression** (baseline model)
+* **Random Forest Classifier** (ensemble model)
 
-Embarked → mode imputation
+### 4. Evaluation
 
-Fare (test set) → median imputation
+* Accuracy
+* ROC AUC
+* ROC Curve
+* Confusion Matrix
+* Classification Report
 
-Encode categorical variables (Sex, Embarked) using LabelEncoder
+### 5. Prediction & Submission
 
-Scale numerical features for Logistic Regression
+* Preprocess `test.csv` with same pipeline
+* Predict survival with Random Forest
+* Save predictions to `submission.csv` for Kaggle submission
 
-3. Model Training
-Logistic Regression (baseline model)
+---
 
-Random Forest Classifier (ensemble model)
+## 📊 Results
 
-4. Evaluation
-Accuracy
-
-ROC AUC
-
-ROC Curve
-
-Confusion Matrix
-
-Classification Report
-
-5. Prediction & Submission
-Preprocess test.csv with same pipeline
-
-Predict survival with Random Forest
-
-Save predictions to submission.csv for Kaggle submission
-
-📊 Results
 Example evaluation (may vary due to randomness):
 
-Logistic Regression: Accuracy ~ 0.80, ROC AUC ~ 0.85
-
-Random Forest: Accuracy ~ 0.83, ROC AUC ~ 0.87
+* **Logistic Regression**: Accuracy ~ 0.80, ROC AUC ~ 0.85
+* **Random Forest**: Accuracy ~ 0.83, ROC AUC ~ 0.87
 
 (Random Forest performed slightly better than Logistic Regression in most runs.)
 
-🚀 How to Submit to Kaggle
-Go to Kaggle Titanic Competition
+---
 
-Upload your submission.csv generated by the notebook.
+## 🚀 How to Submit to Kaggle
 
-Kaggle will evaluate and show your score (accuracy on hidden test labels).
+1. Go to [Kaggle Titanic Competition](https://www.kaggle.com/c/titanic/submit)
+2. Upload your `submission.csv` generated by the notebook.
+3. Kaggle will evaluate and show your score (accuracy on hidden test labels).
 
-📈 Next Steps / Improvements
-Feature engineering (e.g., titles from names, family size)
+---
 
-Hyperparameter tuning (GridSearchCV / RandomizedSearchCV)
+## 📈 Next Steps / Improvements
 
-Use other models (XGBoost, LightGBM, SVM)
+* Feature engineering (e.g., titles from names, family size)
+* Hyperparameter tuning (GridSearchCV / RandomizedSearchCV)
+* Use other models (XGBoost, LightGBM, SVM)
+* Ensemble methods
 
-Ensemble methods
+---
 
-📝 License
+## 📝 License
+
 This project is licensed under the MIT License.
 You are free to use, modify, and distribute with attribution.
 
-🙌 Acknowledgments
-Kaggle Titanic Competition
+---
 
-Seaborn Titanic Dataset
+## 🙌 Acknowledgments
 
-Open-source community for datasets and tutorials
+* [Kaggle Titanic Competition](https://www.kaggle.com/c/titanic/)
+* [Seaborn Titanic Dataset](https://seaborn.pydata.org/generated/seaborn.load_dataset.html)
+* Open-source community for datasets and tutorials
